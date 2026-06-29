@@ -72,18 +72,18 @@ def creer_bon_travail(numero_serie, type_bon, db_path="data/gro321.db"):
     """
     
     with get_connection(db_path) as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                """
-                INSERT INTO bons_travail (numero_serie, type_bon, date_creation)
-                VALUES (?, ?, ?)
-            """,
-                (numero_serie, type_bon, datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
-            )
-            return cursor.lastrowid
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            INSERT INTO bons_travail (numero_serie, type_bon, date_creation)
+            VALUES (?, ?, ?)
+        """,
+            (numero_serie, type_bon, datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
+        )
+        return cursor.lastrowid
 
 
-def creer_bon_diagnostic(numero_serie, symptomes, db_path="data/gro321.db"):
+def creer_bon_diagnostic(numero_serie, symptomes, diagnostic=None, db_path="data/gro321.db"):
     """
     Crée un nouveau bon de diagnostic dans la base de données.
 
@@ -108,15 +108,15 @@ def creer_bon_diagnostic(numero_serie, symptomes, db_path="data/gro321.db"):
         bon_id = creer_bon_travail(numero_serie, 'diagnostic')
         cursor.execute(
             """
-            INSERT INTO bons_diagnostic (bon_id, symptomes)
-            VALUES (?, ?)
+            INSERT INTO bons_diagnostic (bon_id, symptomes, diagnostic)
+            VALUES (?, ?, ?)
         """,
-            (bon_id, symptomes),
+            (bon_id, symptomes, diagnostic),
         )
         return cursor.lastrowid
 
 def creer_bon_mise_a_jour(
-    numero_serie, version_actuelle, version_cible, db_path="data/gro321.db"
+    numero_serie, version_actuelle, version_cible, mise_a_jour_reussie=None, db_path="data/gro321.db"
 ):
     """
     Crée un nouveau bon de mise à jour dans la base de données.
@@ -139,14 +139,14 @@ def creer_bon_mise_a_jour(
         bon_id = creer_bon_travail(numero_serie, 'mise_a_jour')
         cursor.execute(
             """
-            INSERT INTO bons_mise_a_jour (bon_id, version_actuelle, version_cible)
-            VALUES (?, ?, ?)
+            INSERT INTO bons_mise_a_jour (bon_id, version_actuelle, version_cible, mise_a_jour_reussie)
+            VALUES (?, ?, ?, ?)
         """,
-            (bon_id, version_actuelle, version_cible),
+            (bon_id, version_actuelle, version_cible, mise_a_jour_reussie),
         )
         return cursor.lastrowid
 
-def creer_bon_reparation(numero_serie, composant, probleme, db_path="data/gro321.db"):
+def creer_bon_reparation(numero_serie, composant, probleme, pieces_utilisees=None, db_path="data/gro321.db"):
     """
     Crée un nouveau bon de réparation dans la base de données.
 
@@ -168,10 +168,10 @@ def creer_bon_reparation(numero_serie, composant, probleme, db_path="data/gro321
         bon_id = creer_bon_travail(numero_serie, 'reparation')
         cursor.execute(
             """
-            INSERT INTO bons_reparation (bon_id, composant, probleme)
-            VALUES (?, ?, ?)
+            INSERT INTO bons_reparation (bon_id, composant, probleme, pieces_utilisees)
+            VALUES (?, ?, ?, ?)
         """,
-            (bon_id, composant, probleme),
+            (bon_id, composant, probleme, pieces_utilisees),
         )
         return cursor.lastrowid
 
