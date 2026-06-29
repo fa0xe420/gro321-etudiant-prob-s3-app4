@@ -1,0 +1,13 @@
+[project]
+name = "gro321"
+version = "0.1.0"
+description = "Système de gestion de maintenance pour robots de service"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+gro321-server = "gro321.web.app:main"
+init-db = "gro321.database.init_db:main"
+
+[tool.uv]
+package = true

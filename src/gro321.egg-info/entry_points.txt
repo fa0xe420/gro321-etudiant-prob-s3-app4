@@ -1,0 +1,3 @@
+[console_scripts]
+gro321-server = gro321.web.app:main
+init-db = gro321.database.init_db:main

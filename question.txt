@@ -1,0 +1,13 @@
+이거 status를 따로 설정하는 탭이 없거든요 그럼 그냥 항상 ouvert라고 생각하고 두는 건가?
+항상 ouvert라고 하는 거면 status에 따라 생겼다 없어지는 diagnostic, mise_a_jour_reussie, piece_utilisees이 web에 없는 것도 설명됨
+
+bons들을 지우거나 수정하는 것도 없네 의도사항임?
+
+symptomes, diagnostic, composant, probleme, piece_utilisees <- 이거 쪼개야 됨?
+웹을 조금만 더 손보면 이론상 쪼갤 수는 있는데 이걸 좀 뜯어 고쳐야한단 말이지
+특히 piece_utilisees는 json이라 확실히 쪼갤 수 있기는 한데 흠... (어떻게 하는 지는 모름)
+
+__str__ 같은 것들도 classe diagrame에 넣어야 하나?
+__str__(): string
+__repr__(): string
+Dunder Methods
