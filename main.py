@@ -15,7 +15,7 @@ def main():
     print("Démarrer le serveur : uv run gro321-server")
 
     # les tests
-    print("===============SECTION TEST===============")
+    print(f"\n===============SECTION TEST===============\n")
     # creer_bon_diagnostic
     nouveau_diagnostic = database.creer_bon_diagnostic('SN-2026-DIAG', 'symptomes_testing', 'diagnostic_testing')
     assert nouveau_diagnostic is not None, "creer_bon_diagnostic devrait retrouner le bon_id"
